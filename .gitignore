@@ -6,8 +6,8 @@ target/
 
 ### IntelliJ IDEA ###
 java/.idea/modules.xml
-java/.idea/jarRepositories.xml
-java/.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
 java/.idea/libraries/
 *.iws
 *.iml
