@@ -12,6 +12,7 @@ java/.idea/libraries/
 *.iws
 *.iml
 *.ipr
+java/src/utils/*
 
 ### Eclipse ###
 .apt_generated
