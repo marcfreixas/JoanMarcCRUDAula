@@ -3,3 +3,9 @@ create table Professors(
     nom varchar(20),
     cognoms varchar(20)
 )
+
+insert into Professors
+values
+    ("Abril","Comelles"),
+    ("Arnau","Durant"),
+    ("Pol","Germa");
