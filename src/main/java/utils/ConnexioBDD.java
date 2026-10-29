@@ -12,7 +12,7 @@ public class ConnexioBDD {
             return connection;
         }catch(Exception e)
         {
-
+            System.out.println(e);
         }
         return null;
     }
