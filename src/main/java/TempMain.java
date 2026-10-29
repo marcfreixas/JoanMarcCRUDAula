@@ -1,3 +1,5 @@
+import view.ProfessorView;
+
 import java.util.Scanner;
 
 public class TempMain {
@@ -57,7 +59,10 @@ public class TempMain {
     }
 
     private void donarAlta(int table, Scanner input){};
-    private void Llistar(int table, Scanner input){};
+    private void Llistar(int table, Scanner input){
+        ProfessorView ProfeView = new ProfessorView();
+        ProfeView.DemanarProfessor();
+    };
     private void Actualitzar(int table, Scanner input){};
     private void Eliminar(int table, Scanner input){};
 }
