@@ -74,4 +74,75 @@ public class ProfessorDAO {
         }
         return null;
     }
+    public ResultSet readDam2ByName(String nom)
+    {
+        ConnexioBDD CBDD = new ConnexioBDD();
+        Connection connection = CBDD.getConection();
+        try{
+
+            String sql = "Select * From Professors Where name = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,nom);
+            ResultSet resultSet = ps.executeQuery();
+            return resultSet;
+
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    return null;
+    }
+    public ResultSet readDam2BySurname(String cognoms)
+    {
+        ConnexioBDD CBDD = new ConnexioBDD();
+        Connection connection = CBDD.getConection();
+        try{
+            String sql = "Select * from Professors Where cognoms = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,cognoms);
+            ResultSet resultSet = ps.executeQuery();
+            return resultSet;
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        return null;
+    }
+    public ResultSet readDam2ByNameAndSurname(String nom,String cognoms)
+    {
+        ConnexioBDD CBDD = new ConnexioBDD();
+        Connection connection = CBDD.getConection();
+
+        try{
+            String sql = "Select * from Professors where nom = ? And cognoms = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,nom);
+            ps.setString(2,cognoms);
+            ResultSet resultSet = ps.executeQuery();
+            return resultSet;
+        }catch (Exception e)
+        {
+
+            System.out.println(e);
+        }
+        return null;
+    }
+    public ResultSet readDam2ByID(int id)
+    {
+        ConnexioBDD CBDD = new ConnexioBDD();
+        Connection connection = CBDD.getConection();
+
+        try{
+            String sql = "Select * from Professors where id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet resultSet = ps.executeQuery();
+            return resultSet;
+
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return null;
+    }
 }
