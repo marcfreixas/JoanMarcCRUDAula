@@ -1,5 +1,10 @@
+import utils.ConnexioBDD;
 import view.ProfessorView;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class TempMain {
@@ -42,6 +47,7 @@ public class TempMain {
                         donarAlta(opcio, input);
                         break;
                     case 2:
+                        System.out.println("Llistar");
                         Llistar(opcio, input);
                         break;
                     case 3:
@@ -60,8 +66,25 @@ public class TempMain {
 
     private void donarAlta(int table, Scanner input){};
     private void Llistar(int table, Scanner input){
+
+
+
         ProfessorView ProfeView = new ProfessorView();
-        ProfeView.DemanarProfessor();
+
+        Connection connection = new ConnexioBDD().getConection();
+
+        try {
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from professors");
+
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("nom") + " | " + resultSet.getString("cognoms"));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     };
     private void Actualitzar(int table, Scanner input){};
     private void Eliminar(int table, Scanner input){};
