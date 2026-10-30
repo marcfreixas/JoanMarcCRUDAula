@@ -22,8 +22,6 @@ public class ProfessorDAO {
         {
             System.out.println(e);
         }
-
-
-
     }
+
 }
