@@ -2,6 +2,8 @@ package Controller;
 
 import DAO.ProfessorDAO;
 
+import java.sql.ResultSet;
+
 public class ProfessorController {
 
     ProfessorDAO pDAO = new ProfessorDAO();
@@ -11,10 +13,18 @@ public class ProfessorController {
         pDAO.addDam2(profe);
     }
 
-    public Professor[] llistarProfTot(){}
-    public Professor[] llistarProfId(Integer id){}
-    public Professor[] llistarProfNom(String nom){}
-    public Professor[] llistarProfCog(String cognom){}
-    public void actualitzarProf(Professor profO, Professor profN){}
-    public void elimProf(Professor prof){}
+    public ResultSet llistarProfTot(){
+        return pDAO.readDam2();
+    }
+
+    public ResultSet llistarProfId(){}
+    public ResultSet llistarProfNom(){}
+    public ResultSet llistarProfCognom(){}
+
+    public void actualitzarProf(Professor profO, Professor profN){
+        pDAO.updateDam2(profO, profN);
+    }
+    public void elimProf(Professor prof){
+        pDAO.deleteDam2(prof);
+    }
 }

@@ -3,6 +3,9 @@ package view;
 import Controller.Professor;
 import Controller.ProfessorController;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProfessorView {
@@ -19,41 +22,61 @@ public class ProfessorView {
         ProfeContr.altaProfessor(profe);
     }
 
-    public Professor[] LlegirProfessor(){
-        int menu = 0;
+    public ArrayList<Professor> LlegirProfessor(){
+        int opcio = 0;
         int id = 0;
         String valor = "";
-        do
-        {
-            try {
-                System.out.println("Per quina variable vols buscar 1.Id 2.Nom 3.Cognom 4.Llistar tots");
-                menu = Integer.parseInt(lector.next());
-            } catch (NumberFormatException e) {
-                System.err.println("Opcio no acceptada");
-                menu = 0;
-            }
-        } while (menu != 1 && menu != 2 && menu != 3 && menu != 4);
+        ResultSet resultSet;
 
-        if (menu == 2 || menu == 3){
-            System.out.println("Entra el valor que vols buscar");
+        do {
+            try {
+                System.out.println("Per quina opcio vols buscar 1.Id 2.Nom 3.Cognom 4.Tots");
+                opcio = Integer.parseInt(lector.next());
+            } catch (RuntimeException e) {
+                System.out.println("Opcio no acceptada");
+                opcio = 0;
+            }
+        } while (opcio != 1 && opcio != 2 && opcio != 3 && opcio != 4);
+
+        if (opcio == 2 || opcio == 3){
+            System.out.println("Quin valor vols buscar");
             valor = lector.next().trim();
-        } else if (menu == 1) {
-            System.out.println("Entra l'id que vols buscar");
+        } else if (opcio == 1) {
+            System.out.println("Quin id vols buscar");
             id = Integer.parseInt(lector.next());
         }
 
-        switch (menu){
+        switch (opcio){
             case 1:
-                return ProfeContr.llistarProfId(id);
+
+                break;
             case 2:
-                return ProfeContr.llistarProfNom(valor);
+
+                break;
             case 3:
-                return ProfeContr.llistarProfCog(valor);
+
+                break;
             case 4:
-                return ProfeContr.llistarProfTot();
+                resultSet = ProfeContr.llistarProfTot();
+                break;
         }
 
-        return new Professor[0];
+        ArrayList<Professor> arrayProf = new ArrayList<>();
+        try {
+
+            arrayProf.add(
+                    new Professor(
+                            resultSet.getInt("id"),
+                            resultSet.getString("nom"),
+                            resultSet.getString("nom")));
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return arrayProf;
+
     }
 
     public void ActualitzarProfessor(){
