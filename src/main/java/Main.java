@@ -45,17 +45,17 @@ public class Main {
 
                 switch (opcio_submenu) {
                     case 1:
-                        donarAlta(opcio, input);
+                        donarAlta();
                         break;
                     case 2:
                         System.out.println("Llistar");
-                        Llistar(opcio, input);
+                        Llistar();
                         break;
                     case 3:
-                        Actualitzar(opcio, input);
+                        Actualitzar();
                         break;
                     case 4:
-                        Eliminar(opcio, input);
+                        Eliminar();
                         break;
                     case 5:
                         System.out.println("Sortint del programa");
@@ -65,16 +65,16 @@ public class Main {
         } while (opcio != 3);
     }
 
-    private void donarAlta(int table, Scanner input){
+    private void donarAlta(){
         professorView.AltaProfessor();
     };
-    private void Llistar(int table, Scanner input){
+    private void Llistar(){
         professorView.LlegirProfessor();
     };
-    private void Actualitzar(int table, Scanner input){
+    private void Actualitzar(){
         professorView.ActualitzarProfessor();
     };
-    private void Eliminar(int table, Scanner input){
+    private void Eliminar(){
         professorView.EliminarProfessor();
     };
 }

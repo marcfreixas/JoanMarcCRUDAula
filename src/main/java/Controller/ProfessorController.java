@@ -17,9 +17,15 @@ public class ProfessorController {
         return pDAO.readDam2();
     }
 
-    public ResultSet llistarProfId(){}
-    public ResultSet llistarProfNom(){}
-    public ResultSet llistarProfCognom(){}
+    public ResultSet llistarProfId(Integer id){
+        return pDAO.readDam2ByID(id);
+    }
+    public ResultSet llistarProfNom(String nom){
+        return pDAO.readDam2ByName(nom);
+    }
+    public ResultSet llistarProfCognom(String surname){
+        return pDAO.readDam2BySurname(surname);
+    }
 
     public void actualitzarProf(Professor profO, Professor profN){
         pDAO.updateDam2(profO, profN);
