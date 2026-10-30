@@ -25,4 +25,9 @@ public class Professor {
     public void setCognom(String cognom) {
         this.cognom = cognom;
     }
+
+    public int getId()
+    {
+        return id;
+    }
 }
