@@ -16,3 +16,6 @@ create table ModulsProfessionals(
                                     id_profe int,
                                     CONSTRAINT FK_Modul_Profe FOREIGN KEY  (id_profe) references Professors(id)
 );
+insert into ModulsProfessionals(nom,id_profe) values('Access a Dades',2),
+                                                    ('PSP',3),
+                                                    ('Unity',4);

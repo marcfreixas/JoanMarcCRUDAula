@@ -68,7 +68,7 @@ public class ProfessorView {
                     new Professor(
                             resultSet.getInt("id"),
                             resultSet.getString("nom"),
-                            resultSet.getString("nom")));
+                            resultSet.getString("cognoms")));
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
@@ -94,7 +94,7 @@ public class ProfessorView {
             profO = new Professor(
                             resultSet.getInt("id"),
                             resultSet.getString("nom"),
-                            resultSet.getString("nom"));
+                            resultSet.getString("cognoms"));
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
