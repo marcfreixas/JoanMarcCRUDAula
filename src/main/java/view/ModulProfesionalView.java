@@ -18,7 +18,7 @@ public class ModulProfesionalView {
     {
         System.out.println("Introdueixi nom del Modul Profesional");
         String nom = lector.nextLine();
-        System.out.println("Introdueixi cognom del profe");
+        System.out.println("Introdueixi Id del profe");
         Integer prof_id = Integer.parseInt(lector.next());
         ModulProfesional modulProfesional = new ModulProfesional(nom,prof_id);
         mpController.altaMP(modulProfesional);
@@ -32,7 +32,7 @@ public class ModulProfesionalView {
 
         do {
             try {
-                System.out.println("Per quina opcio vols buscar 1.Id 2.Nom 3.Profe Id 4.Tots");
+                System.out.println("Per quina opcio vols buscar 1.Id modul 2.Nom modul 3.Profe Id 4.Tots");
                 opcio = Integer.parseInt(lector.next());
             } catch (RuntimeException e) {
                 System.out.println("Opcio no acceptada");
@@ -109,7 +109,7 @@ public class ModulProfesionalView {
 
         System.out.println("Nom del professor");
         name = lector.next();
-        System.out.println("Cognom del professor");
+        System.out.println("Id del professor");
         prof_id = Integer.parseInt(lector.next());
 
         mpController.actualitzarMP(MPO, new ModulProfesional(name, prof_id));
