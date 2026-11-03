@@ -62,17 +62,20 @@ public class ProfessorView {
         }
 
         ArrayList<Professor> arrayProf = new ArrayList<>();
-        try {
-
-            arrayProf.add(
-                    new Professor(
-                            resultSet.getInt("id"),
-                            resultSet.getString("nom"),
-                            resultSet.getString("cognoms")));
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        try (ResultSet rs = resultSet) {
+            while (rs.next()) {
+                arrayProf.add(new Professor(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("cognoms")));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+        System.out.println("|-- Result --|");
+        for (int i = 0; i != arrayProf.size(); i++){
+            System.out.println(arrayProf.get(i).getId() + "|" + arrayProf.get(i).getNom() + "|" + arrayProf.get(i).getCognom() + "\n");
         }
 
         return arrayProf;
@@ -80,7 +83,7 @@ public class ProfessorView {
     }
 
     public void ActualitzarProfessor(){
-        Professor profO;
+        Professor profO = null;
         Professor profN;
         String name;
         String surname;
@@ -90,13 +93,13 @@ public class ProfessorView {
 
         ResultSet resultSet = ProfeContr.llistarProfId(val);
 
-        try {
-            profO = new Professor(
+        try (ResultSet rs = resultSet) {
+            while (rs.next()) {
+                profO = new Professor(
                             resultSet.getInt("id"),
                             resultSet.getString("nom"),
                             resultSet.getString("cognoms"));
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -110,20 +113,20 @@ public class ProfessorView {
     }
 
     public void EliminarProfessor(){
-        Professor profDel;
+        Professor profDel = null;
 
         System.out.println("What's currently the id of the prof");
         int val = Integer.parseInt(lector.next());
 
         ResultSet resultSet = ProfeContr.llistarProfId(val);
 
-        try {
-            profDel = new Professor(
-                    resultSet.getInt("id"),
-                    resultSet.getString("nom"),
-                    resultSet.getString("cognoms"));
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        try (ResultSet rs = resultSet) {
+            while (rs.next()) {
+                profDel = new Professor(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("cognoms"));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

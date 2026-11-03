@@ -64,17 +64,20 @@ public class ModulProfesionalView {
         }
 
         ArrayList<ModulProfesional> arrayProf = new ArrayList<>();
-        try {
-
-            arrayProf.add(
-                    new ModulProfesional(
-                            resultSet.getInt("id"),
-                            resultSet.getString("nom"),
-                            resultSet.getInt("id_profe")));
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        try (ResultSet rs = resultSet) {
+            while (rs.next()) {
+                arrayProf.add(new ModulProfesional(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nom"),
+                        resultSet.getInt("id_profe")));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+        System.out.println("|-- Result --|");
+        for (int i = 0; i != arrayProf.size(); i++){
+            System.out.println(arrayProf.get(i).getId() + "|" + arrayProf.get(i).getNom() + "|" + arrayProf.get(i).getId_profe());
         }
 
         return arrayProf;
@@ -82,7 +85,7 @@ public class ModulProfesionalView {
     }
 
     public void ActualitzarMD(){
-        ModulProfesional MPO;
+        ModulProfesional MPO = null;
         ModulProfesional MPN;
         String name;
         int prof_id;
@@ -92,11 +95,12 @@ public class ModulProfesionalView {
 
         ResultSet resultSet = mpController.llistarMPId(val);
 
-        try {
-            MPO = new ModulProfesional(
-                    resultSet.getInt("id"),
-                    resultSet.getString("nom"),
-                    resultSet.getInt("id_profe"));
+        try (ResultSet rs = resultSet) {
+            while (rs.next()) {
+                MPO = new ModulProfesional(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nom"),
+                        resultSet.getInt("id_profe"));}
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
@@ -112,18 +116,19 @@ public class ModulProfesionalView {
     }
 
     public void EliminarMD(){
-        ModulProfesional MPdel;
+        ModulProfesional MPdel = null;
 
         System.out.println("What's currently the id of the Profesional Module");
         int val = Integer.parseInt(lector.next());
 
         ResultSet resultSet = mpController.llistarMPProfId(val);
 
-        try {
+        try (ResultSet rs = resultSet) {
+            while (rs.next()) {
             MPdel = new ModulProfesional(
                     resultSet.getInt("id"),
                     resultSet.getString("nom"),
-                    resultSet.getInt("id_profe"));
+                    resultSet.getInt("id_profe"));}
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {

@@ -113,7 +113,10 @@ public class Main {
                 }
 
             }
+            System.out.println("\n\n");
         } while (opcio != 3);
+
+
     }
 
     private void donarAltaProfe(){
